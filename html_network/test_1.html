@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1600px;
+            height: 1000px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"color": "#162347", "id": "1", "label": "Lead acid battery separators, batteries and related methods", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "2", "label": "Separator for accumulator-plates", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "3", "label": "Separator for storage batteries", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "4", "label": "Inert separator beads for regeneration of mixed bed-ion exchange resins", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "5", "label": "Composite battery separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "6", "label": "Separator for starter batteries", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "7", "label": "Lead acid separators, battery systems and their manufacturing methods", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "8", "label": "High performance lead acid battery with advanced elecrolyte system", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "9", "label": "Integral light sources and detectors for an optical sensor to detect battery faults", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "10", "label": "Optical waveguide methods for detecting internal faults in operating batteries", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "11", "label": "Oxidation protected separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "12", "label": "Battery separators with cross ribs and related methods", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "13", "label": "Separator for secondary batteries", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "14", "label": "Fleece made of staple fibers made of glass or other mineral substances", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "15", "label": "Battery separator with ribs and a method of casting the ribs on the separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "16", "label": "Separator for lead acid storage battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "17", "label": "Water-dispersible and multicomponent fibers from sulfopolyesters", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "18", "label": "Water-dispersible fibers and fibrous articles", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "19", "label": "Sulfopolyesters for paper strength and process", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "20", "label": "Separators, batteries, systems, and methods for idle start stop vehicles", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "21", "label": "Separator for storage-battery plates", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "22", "label": "Battery separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "23", "label": "Lead-acid storage battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "24", "label": "Anti-stratification battery separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "25", "label": "Batteries, separators, components, and compositions with heavy metal removal capability and related methods", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "26", "label": "Mat made of glass fibers or polyolefin fibers used as a separator in a lead-acid battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "27", "label": "Bio-mineralized cathode and anode materials for electrochemical cell", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "28", "label": "Lead/acid battery having horizontal plates", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "29", "label": "Multicell electric storage batteries", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "30", "label": "Liquid activated battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "31", "label": "Liquid activated battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "32", "label": "Battery cell construction including fiberous mat separator", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "33", "label": "Compressed battery system for motive power applications", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "34", "label": "Separator for sealed lead-acid battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "35", "label": "Accumulator electrode sheath", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "36", "label": "Storage battery plate insulation", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "37", "label": "Ultrafine porous polymer articles", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "38", "label": "Sheath for tubular storage, battery electrodes and method for their production", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "39", "label": "Titanium/silver-containing cellulosic separator for electrochemical cells", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "40", "label": "Battery electrode and method for manufacturing same", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "41", "label": "Lead-acid storage battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "42", "label": "Acid resistant glass mats that include binders with hydrophilic agents", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "43", "label": "Short-circuit protection in wet-cell battery", "shape": "dot", "title": "Main Node", "value": 200}, {"color": "#162347", "id": "44", "label": "Laminar textile material for a battery electrode", "shape": "dot", "title": "Main Node", "value": 200}]);
+        edges = new vis.DataSet([]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
